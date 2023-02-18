@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_order_form_club_or" model="ir.ui.view">
+            <field name="name">view_order_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="club_or" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='tax_totals']" position="after">
+                    <field name="possible_discount" class="oe_left" attrs="{'invisible':[('club_or','=',False)]}" colspan="2"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_order_tree_club_or" model="ir.ui.view">
+            <field name="name">view_order_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="club_or" readonly="1" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="club_or_view_sales_order_filter" model="ir.ui.view">
+            <field name="name">view_order_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="club_or"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="sale_order_view_search_inherit_sale_club_or" model="ir.ui.view">
+            <field name="name">view_order_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+
+
+                <xpath expr="//filter[@name='activities_upcoming_all']" position="after">
+                    <filter string="Order Club OR" domain="[('club_or', '=', 'true')]" name="order_club_or"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

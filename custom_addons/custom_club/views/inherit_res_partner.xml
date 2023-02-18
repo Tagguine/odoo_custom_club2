@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="inherited_model_view_form" model="ir.ui.view">
+        <record id="club_or_inherit_res_partner" model="ir.ui.view">
+            <field name="name">Inherit Res Partner Club or</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="product.view_partner_property_form"/>
             <field name="arch" type="xml">
-                <!-- find field description and add the field
-                     new_field after it -->
+
                 <xpath expr="//field[@name='property_product_pricelist']" position="after">
-                  <field name="club_or1" />
+                    <field name="club_or"/>
+
                 </xpath>
+
             </field>
         </record>
-<!--        <record id="club_or_inherit_res_partner" model="ir.ui.view">-->
-<!--            <field name="name">inherit.res.partner.club.or</field>-->
-<!--            <field name="model">res.partner</field>-->
-<!--            <field name="inherit_id" ref="product.view_partner_property_form"/>-->
-<!--            <field name="arch" type="xml">-->
 
-<!--                <xpath expr="//field[@name='property_product_pricelist']" position="after">-->
-<!--                    <field name="club_or"/>-->
-
-<!--                </xpath>-->
-
-<!--            </field>-->
-<!--        </record>-->
 
     </data>
 </odoo>
